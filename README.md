@@ -58,4 +58,3 @@ This document explains how to use this code (build, test and deploy), locally wi
 
 
 
-# CA2_Group

@@ -42,7 +42,7 @@
             <artifactId>jaxrs-ri</artifactId>
             <version>2.32</version>
         </dependency>
-        
+               
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -94,6 +94,21 @@
             <artifactId>rest-assured</artifactId>
             <version>4.3.1</version>
             <scope>test</scope>
+        </dependency>
+        
+        <!-- Security Dependencies (jwt-support) -->
+        
+        <!-- https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt -->
+        <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>9.0.1</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
         </dependency>
 
         <!-- Used for setting database name in pom.xml -->
@@ -154,7 +169,8 @@
                     <compilerArgs>
                         <!-- Comment in (and dont forget out) as required -->
                         <!-- <arg>-verbose</arg>-->
-                        <!-- <arg>-Xlint:unchecked</arg>-->
+                        <!--<arg>-Xlint:unchecked</arg>-->
+                        <!--<arg>-Xlint:deprecation</arg>-->
                     </compilerArgs>
                 </configuration>
             </plugin>
