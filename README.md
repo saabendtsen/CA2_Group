@@ -1,60 +1,24 @@
+## *CA2 Group Project*
+- *This project is the start code for project CA2 for Students @ B-Class*
+## *How to use this Project*
+### *Backend:*
+Must provide an initial setup with entity classes for users and roles
+- The backend must provide a JWT-based authentication/authorization mechanism.
+- The backend must provide unit and integration tests, and must be “testable” by GitHub Actions
+- The backend must be deployable using a single maven command
+- Passwords must be protected using a hash/salt-strategy
+- The backend must provide (at least) the following Dummy REST-endpoints:
+- An endpoint that requires the user-role
+- An endpoint that requires the admin-role
+- An endpoint that fetches data from a minimum of five remote servers ((find a free endpoint as you like, or make one by yourself) similar to the free API's used by start code) (see hints and requirements at the end of this document)
 
-*This project is meant as start code for projects and exercises given in Flow-1+2 (+3 using the security-branch) at http://cphbusiness.dk in the Study Program "AP degree in Computer Science"*
-
-*Projects which are expected to use this start-code are projects that require all, or most of the following technologies:*
- - *JPA and REST*
-- *Testing, including database test*
-- *Testing, including tests of REST-API's*
-- *CI and CONTINUOUS DELIVERY*
-
-## Flow 2 week 1
-
-### Preconditions
-*In order to use this code, you should have a local developer setup + a "matching" droplet on Digital Ocean as described in the 3. semester guidelines* 
-
-### Getting Started
-
-This document explains how to use this code (build, test and deploy), locally with maven, and remotely with maven controlled by Github actions
- - [How to use](https://docs.google.com/document/d/1rymrRWF3VVR7ujo3k3sSGD_27q73meGeiMYtmUtYt6c/edit?usp=sharing)
-
-### JPA snippets
-
-### Setup in Intellij
-- open view->too windows->persistence
-- open the Database tab and create a new data source (remember to point to a database event though this is already written in the persistence unit. This is necessary in order to use the JPQL console)
-- in the persistence window right click the pu or an entity and choose "console"
-- write a jpql query in the console and execute it.
-### In netbeans it is much simpler
-- just right click the pu and choose: "Run JPQL query"
-
-### Create model in workbench (cannot be done from Intellij - No model designer yet)
-- file-> new model
-- dobbelclick the mydb icon and change to relevant database (create one first if needed)
-- click the Add Diagram icon
-- click the table icon in the left side panel and click in the squared area to insert new table
-- dobbelclick the new table and change name and add columns (remember to add a check mark in 'ai' for the primary key)
-- do the process again to add a second table
-- now in the panel choose the 'non identifying relationship' on to many
-- click first on the child table (the one that should hold the foreign key) and then on the parent. A new relationship was now added.
-- When done with designing - goto top menu: Database->forward engineer.
-  - Check that all settings looks right and click continue
-  - click continue again (no changes needed here)
-  - Make sure the 'Export mysql table objects' is checked and Show filter to make sure that all your tables are in the 'objects to process' window -> click continue
-  - Verify that the generated script looks right -> click continue
-  - click close and open the database to see the new tables, that was just created.
-
-### create entities from database in Intellij (Persistence mappings)
-- From inside the Persistence window:
-- Right-click a persistence unit, point to Generate Persistence Mapping and select By Database Schema.
-- Select the 
-  - data source 
-  - package
-  - tick tables to include
-  - open tables to see columns and add the ones with mapped type: Collection<SomeEntity> and SomeEntity
-  - click OK.
-
-### In netbeans it is much easier
-- Right click project name -> new -> persistence -> Entity classes From Database -> choose database connection from list -> add the tables you need -> Finish
+### *WEB-Client:*
+- Must be implemented as a Single Page Application with React and provide:
+- A login/logout option
+- It must render the username, and if used, role(s), for a logged-in user (in any way you like)
+- A React Router Based setup with initial pages/routes that renders data fetched from the three endpoints mentioned above and a welcome page with initial instructions on how to use the Quick Start Project.
+- Must be styled (use bootstrap unless you have knowledge from somewhere else) to be immediately “presentable”
+- URLs used by the client-projects must be read from a file settings.js
 
 
 
