@@ -30,7 +30,6 @@ public class SetupTestUsers {
     em.getTransaction().begin();
     Role userRole = new Role("user");
     Role adminRole = new Role("admin");
-
     user.addRole(userRole);
     admin.addRole(adminRole);
     both.addRole(userRole);
