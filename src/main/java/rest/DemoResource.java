@@ -1,7 +1,10 @@
 package rest;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import entities.User;
+
+import java.io.IOException;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManager;
@@ -15,6 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 import utils.EMF_Creator;
+import utils.HttpUtils;
 
 /**
  * @author lam@cphbusiness.dk
@@ -49,6 +53,28 @@ public class DemoResource {
         } finally {
             em.close();
         }
+    }
+    @GET
+    @Path("randomuser")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getRandomUser() throws IOException {
+        String catFact = HttpUtils.fetchData("https://randomuser.me/api/");
+        return catFact;
+    }
+    @GET
+    @Path("crypto")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCrypto() throws IOException {
+        String catFact = HttpUtils.fetchData("https://api.coindesk.com/v1/bpi/currentprice.json");
+        return catFact;
+    }
+
+    @GET
+    @Path("catfact")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCatFacts() throws IOException {
+        String catFact = HttpUtils.fetchData("https://catfact.ninja/fact");
+        return catFact;
     }
 
     @GET
