@@ -107,7 +107,8 @@ public class DemoResource {
     public String createUser(String newUser) {
         String thisuser = securityContext.getUserPrincipal().getName();
         UserDTO userDTO = gson.fromJson(newUser, UserDTO.class);
-        facade.createUser(userDTO);
-        return "{\"msg\": \"Hello to (admin) User: " + thisuser + "\"}";
+        userDTO = facade.createUser(userDTO);
+
+        return "{\"msg\": \"Created: " + gson.toJson(userDTO) + "\"}";
     }
 }
