@@ -7,8 +7,8 @@ import java.util.List;
 
 public class UserDTO {
 
-    private String userName;
-    private String userPass;
+    private String username;
+    private String password;
 
 
     public static List<UserDTO> getDtos(List<User> u){
@@ -18,25 +18,25 @@ public class UserDTO {
     }
 
     public UserDTO(User user) {
-        this.userName = user.getUserName();
+        this.username = user.getUsername();
     }
 
 
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getUserPass() {
-        return userPass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserPass(String userPass) {
-        this.userPass = userPass;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 

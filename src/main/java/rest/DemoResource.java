@@ -22,9 +22,6 @@ import org.eclipse.persistence.annotations.CompositeMember;
 import utils.EMF_Creator;
 import utils.HttpUtils;
 
-/**
- * @author lam@cphbusiness.dk
- */
 @Path("info")
 public class DemoResource {
     
@@ -82,13 +79,18 @@ public class DemoResource {
         return catFact;
     }
 
+    String thisuserrole = "";
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("user")
     @RolesAllowed("user")
     public String getFromUser() {
         String thisuser = securityContext.getUserPrincipal().getName();
-        return "{\"msg\": \"Hello to User: " + thisuser + "\"}";
+        if (securityContext.isUserInRole("user")) {
+            thisuserrole = "user";
+        }
+        return "{\"msg\": \"Hello: " + thisuser +  "   -   Role: " + thisuserrole +"\"}";
     }
 
     @GET
@@ -97,7 +99,10 @@ public class DemoResource {
     @RolesAllowed("admin")
     public String getFromAdmin() {
         String thisuser = securityContext.getUserPrincipal().getName();
-        return "{\"msg\": \"Hello to (admin) User: " + thisuser + "\"}";
+        if (securityContext.isUserInRole("admin")) {
+            thisuserrole = "admin";
+        }
+        return "{\"msg\": \"Hello: " + thisuser +  "   -   Role: " + thisuserrole +"\"}";
     }
 
     @POST
@@ -110,7 +115,7 @@ public class DemoResource {
         UserDTO userDTO = gson.fromJson(newUser, UserDTO.class);
         userDTO = facade.createUser(userDTO);
 
-        return "{\"msg\": \"Created: " + gson.toJson(userDTO) + "\"}";
+        return gson.toJson(userDTO);
     }
 
     @DELETE

@@ -26,12 +26,12 @@ public class User implements Serializable {
   @Basic(optional = false)
   @NotNull
   @Column(name = "user_name", length = 25)
-  private String userName;
+  private String username;
   @Basic(optional = false)
   @NotNull
   @Size(min = 1, max = 255)
   @Column(name = "user_pass")
-  private String userPass;
+  private String password;
   @JoinTable(name = "user_roles", joinColumns = {
     @JoinColumn(name = "user_name", referencedColumnName = "user_name")}, inverseJoinColumns = {
     @JoinColumn(name = "role_name", referencedColumnName = "role_name")})
@@ -52,36 +52,36 @@ public class User implements Serializable {
   public User() {}
 
   public User(UserDTO userDTO) {
-    this.userName = userDTO.getUserName();
-    this.userPass = BCrypt.hashpw(userDTO.getUserPass(),BCrypt.gensalt());
+    this.username = userDTO.getUsername();
+    this.password = BCrypt.hashpw(userDTO.getPassword(),BCrypt.gensalt());
   }
 
   //TODO Change when password is hashed
    public boolean verifyPassword(String pw){
-        return BCrypt.checkpw(pw,this.userPass);
+        return BCrypt.checkpw(pw,this.password);
     }
 
-  public User(String userName, String userPass) {
-    this.userName = userName;
+  public User(String username, String password) {
+    this.username = username;
 
-    this.userPass = BCrypt.hashpw(userPass, BCrypt.gensalt());
+    this.password = BCrypt.hashpw(password, BCrypt.gensalt());
   }
 
 
-  public String getUserName() {
-    return userName;
+  public String getUsername() {
+    return username;
   }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setUsername(String userName) {
+    this.username = userName;
   }
 
-  public String getUserPass() {
-    return this.userPass;
+  public String getPassword() {
+    return this.password;
   }
 
-  public void setUserPass(String userPass) {
-    this.userPass = userPass;
+  public void setPassword(String userPass) {
+    this.password = userPass;
   }
 
   public List<Role> getRoleList() {
