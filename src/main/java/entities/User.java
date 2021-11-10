@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import dtos.UserDTO;
 import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
@@ -48,6 +50,10 @@ public class User implements Serializable {
   }
 
   public User() {}
+
+  public User(UserDTO userDTO) {
+    this.userName = userName;
+  }
 
   //TODO Change when password is hashed
    public boolean verifyPassword(String pw){
