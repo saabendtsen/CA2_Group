@@ -13,7 +13,7 @@ public class UserDTO {
 
     public static List<UserDTO> getDtos(List<User> u){
         List<UserDTO> userDTOSdtos = new ArrayList();
-        u.forEach(um -> userDTOSdtos.add(new User(um)));
+        u.forEach(um -> userDTOSdtos.add(new UserDTO(um)));
         return userDTOSdtos;
     }
 
@@ -40,13 +40,6 @@ public class UserDTO {
         this.userPass = userPass;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
 
 
