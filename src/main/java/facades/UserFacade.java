@@ -1,5 +1,6 @@
 package facades;
 
+import dtos.UserDTO;
 import entities.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -43,7 +44,7 @@ public class UserFacade {
         return user;
     }
 
-    public User createUser (String username, String password, String role){
+    public UserDTO createUser (UserDTO userDTO){
         return null;
     }
 
