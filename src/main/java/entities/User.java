@@ -52,7 +52,8 @@ public class User implements Serializable {
   public User() {}
 
   public User(UserDTO userDTO) {
-    this.userName = userName;
+    this.userName = userDTO.getUserName();
+    this.userPass = BCrypt.hashpw(userDTO.getUserPass(),BCrypt.gensalt());
   }
 
   //TODO Change when password is hashed
