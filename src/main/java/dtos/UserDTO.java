@@ -19,7 +19,6 @@ public class UserDTO {
 
     public UserDTO(User user) {
         this.userName = user.getUserName();
-        this.userPass = user.getUserPass();
     }
 
 
