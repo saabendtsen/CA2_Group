@@ -2,6 +2,7 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import dtos.UserDTO;
 import entities.User;
 
 import java.io.IOException;
@@ -30,6 +31,8 @@ public class DemoResource {
     @Context
     private UriInfo context;
     private UserFacade facade = UserFacade.getUserFacade(EMF);
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
 
     @Context
     SecurityContext securityContext;
@@ -103,8 +106,8 @@ public class DemoResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public String createUser(String newUser) {
         String thisuser = securityContext.getUserPrincipal().getName();
-
-        facade.createUser()
+        UserDTO userDTO = gson.fromJson(newUser, UserDTO.class);
+        facade.createUser(userDTO);
         return "{\"msg\": \"Hello to (admin) User: " + thisuser + "\"}";
     }
 }
