@@ -10,14 +10,13 @@ import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
-import javax.ws.rs.POST;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.Produces;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
+
+import facades.UserFacade;
 import utils.EMF_Creator;
 import utils.HttpUtils;
 
@@ -30,6 +29,7 @@ public class DemoResource {
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
     @Context
     private UriInfo context;
+    private UserFacade facade = UserFacade.getUserFacade(EMF);
 
     @Context
     SecurityContext securityContext;
@@ -100,8 +100,11 @@ public class DemoResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("admin/createUser")
     @RolesAllowed("admin")
-    public String createUser() {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String createUser(String newUser) {
         String thisuser = securityContext.getUserPrincipal().getName();
+
+        facade.createUser()
         return "{\"msg\": \"Hello to (admin) User: " + thisuser + "\"}";
     }
 }
