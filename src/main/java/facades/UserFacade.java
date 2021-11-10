@@ -43,4 +43,8 @@ public class UserFacade {
         return user;
     }
 
+    public User createUser (String username, String password, String role){
+        return null;
+    }
+
 }
