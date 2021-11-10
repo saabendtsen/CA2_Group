@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 
 import facades.UserFacade;
+import org.eclipse.persistence.annotations.CompositeMember;
 import utils.EMF_Creator;
 import utils.HttpUtils;
 
@@ -110,5 +111,15 @@ public class DemoResource {
         userDTO = facade.createUser(userDTO);
 
         return "{\"msg\": \"Created: " + gson.toJson(userDTO) + "\"}";
+    }
+
+    @DELETE
+    @Path("admin/deleteUser/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String deleteUser(@PathParam("name")String name){
+        UserDTO userDTO = facade.deleteUser(name);
+
+        return "Deleted user " + gson.toJson(userDTO);
     }
 }
